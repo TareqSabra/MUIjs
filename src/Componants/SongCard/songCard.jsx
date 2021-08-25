@@ -9,42 +9,45 @@ const useStyle = makeStyles({
     },
 
 })
-const SongCard = () => {
+const SongCard = (props) => {
+    console.log("props in card",props)
+    const{album,name,artists,preview_url}=props.item
     const playAudio =()=> {
         const audioEl = document.getElementsByClassName("audio-element")[0]
         audioEl.play()
       }
+
     const classes = useStyle()
     return ( 
         <Paper variant="outlined" className={classes.root}>
           <img
           id="songImg"
           alt=""
-          src= "https://picsum.photos/300/300"
-          width="300"
-          height="300"
+          src= {album.images[0].url}
+          width={album.images[0].width}
+          height={album.images[0].height}
           />
         <Typography id="SongName"
          variant="h5"
          component="div" >
-             hey1
+            {name}
         </Typography>
         <Typography id="AlbumName"
          variant="subtitle2"
          component="div" >
-              hey2
+             {album.name}
         </Typography>
         <Typography id="ArtistName"
         variant="subtitle1"
         component="div" >
-             hey3
+            { artists.name}
         </Typography>
         <div>
         <button onClick={playAudio}>
           <span>Play Audio</span>
         </button>
         <audio className="audio-element">
-        <source src="https://p.scdn.co/mp3-preview/0dd45171d094ca8d374219054879662fe7982462?cid=d8a5ed958d274c2e8ee717e6a4b0971d"></source>
+        <source src={preview_url}></source>
         </audio>
       </div>
         </Paper>
