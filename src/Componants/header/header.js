@@ -1,9 +1,6 @@
 import {
-    Badge,
     Grid,
-    Icon,
     IconButton,
-    InputBase,
     makeStyles,
     Typography,
   } from "@material-ui/core";
@@ -41,13 +38,15 @@ import Brightness5OutlinedIcon from '@material-ui/icons/Brightness5Outlined';
     }
   }));
 const Header = (props) => {
+  const {setToggel,Artist,song}= props
+ // console.log(props)
     const classes = useStyle();
     return ( 
             <AppBar position="fixed" className={classes.Root}>
              <Toolbar>
                  <Grid container alignItems="center">
                      <Grid item sm >
-                       <IconButton onClick={props.setToggel} >
+                       <IconButton onClick={setToggel} >
                          {
                            props.toggle?< Brightness5OutlinedIcon className={classes.ThemeToggel}/>  : <Brightness2OutlinedIcon className={classes.ThemeToggel}/>
                          }
@@ -60,14 +59,15 @@ const Header = (props) => {
                          component="h6"
                          > Music Index
                          </Typography>
-                         
                      </Grid>
-                     <Grid item sm>
-
-                     </Grid>
+                     <Grid item sm/>
+                     
                  </Grid>
              </Toolbar> 
-             <Searchbar/>
+             <Searchbar
+             Artist={Artist}
+             song={song}
+             />
             </AppBar>
      );
 }

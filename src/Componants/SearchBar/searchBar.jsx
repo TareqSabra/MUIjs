@@ -8,8 +8,8 @@ const useStyle = makeStyles(({palette})=>({
       backgroundColor: 
       palette.action.disabledBackground,
       transform: "translateZ(0)",
-      height:"5vh"
-
+      minHeight:"80px",
+      zIndex:"110"
     },
     label:{
         marginLeft:"50px",
@@ -36,7 +36,9 @@ const useStyle = makeStyles(({palette})=>({
       },
     },
   }));
-const Searchbar = () => {
+const Searchbar = (props) => {
+    const {Artist,song}=props
+  /// console.log(props)
     const classes = useStyle();
     return ( 
             <Grid container alignItems="center"className={classes.Root}>
@@ -45,8 +47,10 @@ const Searchbar = () => {
                          Search for music by Artist
                     </label>
                      <InputBase
+                        name="Artist"
                         className={classes.Search}
-                        placeholder="Search"
+                        placeholder="SearchByArtist"
+                        onChange={Artist}
                         startAdornment={<SearchOutlined fontSize="small" />}
                             />
                 </Grid>
@@ -55,8 +59,10 @@ const Searchbar = () => {
                          Search for music by Song name
                     </label>
                     <InputBase
+                        name="SongName"
                         className={classes.Search}
-                        placeholder="Search"
+                        placeholder="SearchBySongName"
+                        onChange={song}
                         startAdornment={<SearchOutlined fontSize="small" />}
                         />
                 </Grid>
