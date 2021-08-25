@@ -1,8 +1,9 @@
-import { Grid, makeStyles, Paper} from '@material-ui/core';
+import { Grid, makeStyles, Paper, Typography} from '@material-ui/core';
 import React from 'react';
 import SongCard from '../../Componants/SongCard/songCard';
 const useStyle = makeStyles((theme) => ({
     pageContent: {
+      color:theme.palette.text.primary,
       margin: theme.spacing(25),
       padding: theme.spacing(3),
       width:"85%",
@@ -39,38 +40,34 @@ const useStyle = makeStyles((theme) => ({
 
   }));
 const Songlist = (props) => {
+  console.log(props)
     const {data}= props
     console.log("data",data);
     const classes = useStyle();
     return (  
         <Paper className={classes.pageContent}>
+          {
+           (data===undefined|data==="No results Found") 
+            ?<Typography 
+            variant="h5"
+            component="div" >
+              search for a song's name
+            </Typography>
+            :
             <Grid container alignItems={'center'} alignContent={'center'} className={classes.SongCardContainor}>
-                <Grid item className={classes.SongCard}  >
-                  <SongCard/>
-                </Grid>
-                <Grid item className={classes.SongCard}  >
-                  <SongCard/>
-                </Grid>
-                <Grid item className={classes.SongCard}  >
-                  <SongCard/>
-                </Grid>
-                <Grid item className={classes.SongCard}  >
-                  <SongCard/>
-                </Grid>
-                <Grid item className={classes.SongCard}  >
-                  <SongCard/>
-                </Grid>
-                <Grid item className={classes.SongCard}  >
-                  <SongCard/>
-                </Grid>
-                <Grid item className={classes.SongCard}  >
-                  <SongCard/>
-                </Grid>
-                <Grid item className={classes.SongCard}  >
-                  <SongCard/>
-                </Grid>
-            </Grid>
-       
+              {
+                data.map((item)=>{
+                  return(
+                    <Grid item className={classes.SongCard}  >
+                    <SongCard item={item}/>
+                    </Grid>
+                  )
+                }
+                )
+              }
+          
+        </Grid>
+          }
         </Paper>
     );
 }

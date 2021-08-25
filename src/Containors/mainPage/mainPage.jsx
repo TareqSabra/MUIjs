@@ -25,24 +25,22 @@ const Mainpage = (props) => {
               getmusicByArtist(Artist,setdata);
            }
           fetchData();
-        console.log("inside A",data);
     },[Artist])
 
     useEffect(()=>{
            async function fetchData() {
-            const datal =    getmusicByArtist(Song);
-            setdata(datal) ;
+            console.log(getmusicBysongName(Song,setdata));
+          
           }
           fetchData();
-        console.log("inside S",data);
     },[Song])
-    
+    console.log("data from home",data)
     return ( 
         <>
             <Header toggle={toggle} setToggel={setToggel} Artist={handelChange} song={handelChange}></Header>
             <SideBar>
             </SideBar>
-            <Songlist data={data}></Songlist>
+            <Songlist data={data.Results}></Songlist>
            
         </>
         /*
